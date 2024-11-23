@@ -111,6 +111,15 @@ The application will be available at http://localhost:8501
    - Adjust relevance threshold to control match precision
    - View conversation details and similar conversations
 
+   ![Semantic Search Interface](semanticsearch1.png)
+   *Main semantic search interface with search bar and relevance controls*
+
+   ![Search Results View](semanticsearch2.png)
+   *Detailed view of semantic search results with conversation context*
+
+   ![Similar Conversations](semanticsearch3.png)
+   *Similar conversation recommendations and relationship visualization*
+
 2. **Topic Map**
    - Navigate to the Topic Map page to visualize conversation relationships
    - Click nodes to explore related conversations
