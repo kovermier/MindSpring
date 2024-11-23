@@ -1,0 +1,60 @@
+# Conversation data files containing PII
+*.json
+**/*.json
+
+# Processed chunks
+conversations_chunks/
+claude_conversations_chunks/
+model_comparisons_chunks/
+*_chunks/
+
+# Vector store
+qdrant_db/
+.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual Environment
+venv/
+env/
+.env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables
+.env
+.env.*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Test files
+test_*.py
+!test_load_and_search.py
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
