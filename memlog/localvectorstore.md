@@ -2,6 +2,7 @@
 
 Let's build a solution using all local components with Langchain, Qdrant (for vector store), and Sentence Transformers for embeddings. This keeps everything local and efficient.
 pythonCopyimport json
+```py
 from datetime import datetime
 from typing import List, Dict, Optional
 from pathlib import Path
@@ -232,6 +233,7 @@ class LocalConversationStore:
             }
             for point in results
         ]
+```
 Usage example:
 pythonCopy# Initialize the store
 store = LocalConversationStore()
