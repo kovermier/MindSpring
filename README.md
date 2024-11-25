@@ -1,211 +1,127 @@
-# MindSpring
+# Project Memlog - MindSpring
 
-## Project Overview
+## Overview
+**Project**: MindSpring
+**Start Date**: 2024-11-19
+**Status**: Active
+**Lead**: Kurt Overmier
 
+## Quick Links
+- Repository: https://github.com/kovermier/MindSpring.git
+- Docs: (Not yet available)
+- Boards: (Not yet available)
+- Chat: (Not yet available)
+
+## Status Legend
+- 🟢 On Track
+- 🟡 At Risk
+- 🔴 Blocked
+- ⭐ Milestone
+- 📝 Needs Review
+
+## Daily Logs
+(See memlog/memlog.md for detailed daily logs)
+
+
+## Tasks
+
+### Active
+| ID | Task | Status | Owner | Due |
+|----|------|--------|-------|-----|
+| 001 | Implement advanced topic analysis | 🟢 | Kover | - |
+| 002 | Add usage statistics dashboard | 🟢 | Kover | - |
+| 003 | Enhance knowledge graph visualization | 🟢 | Kover | - |
+
+### Completed
+(See memlog/memlog.md for completed tasks)
+
+
+## AI Assistant Sessions
+
+
+## Code Snippets
+
+## Project Description
 MindSpring is a systematic tracking and analysis system for GPT and ClaudeAI conversation JSON exports. It provides tools for processing, visualizing, and analyzing large conversation datasets with a focus on memory efficiency, data privacy, and interactive exploration.
 
 ## Key Features
-
-- 🔍 Semantic Search & Analysis
-  - Vector-based semantic search
-  - Relevance-based filtering
-  - Similar conversation discovery
-  - Topic modeling and clustering
-
-- 📊 Analysis Tools
-  - Conversation pattern analysis
-  - Topic distribution insights
-  - Interactive topic mindmap
-  - Knowledge graph visualization
-
-- 🔒 Privacy & Security
-  - Local vector storage with Qdrant
-  - Local embedding generation with Ollama
-  - PII (Personally Identifiable Information) protection
-  - Configurable data exclusion via .gitignore
-
-- 📈 Visualization
-  - Streamlit-based interactive UI
-  - Knowledge graph with physics-based interactions
-  - Clickable nodes for detailed conversation views
-  - Similar conversation recommendations
-
-## Project Status
-
-- **Current Phase**: UI Consolidation & Search Enhancement
-- **Active Development**: Search Refinement, Knowledge Graph Visualization
+- Semantic Search & Analysis: Vector-based semantic search, relevance-based filtering, similar conversation discovery, topic modeling and clustering.
+- Analysis Tools: Conversation pattern analysis, topic distribution insights, interactive topic mindmap, knowledge graph visualization.
+- Privacy & Security: Local vector storage with Qdrant, local embedding generation with Ollama, PII protection, configurable data exclusion.
+- Visualization: Streamlit-based interactive UI, knowledge graph with physics-based interactions, clickable nodes, similar conversation recommendations.
 
 ## Prerequisites
-
 - Python 3.8+
-- [Ollama](https://ollama.ai/) installed and running locally
+- Ollama installed and running locally
 - Dependencies listed in `requirements.txt`
 
 ## Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/kovermier/MindSpring.git
-cd MindSpring
-```
-
-2. Create a virtual environment
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-```
-
-3. Install dependencies
-```bash
-pip install -r requirements.txt
-```
-
-4. Install and start Ollama
-- Download and install Ollama from [ollama.ai](https://ollama.ai/)
-- Pull the required embedding model:
-```bash
-ollama pull mxbai-embed-large
-```
-- Ensure Ollama is running (it should be running as a service)
+1. Clone the repository: `git clone https://github.com/kovermier/MindSpring.git && cd MindSpring`
+2. Create a virtual environment: `python -m venv venv && source venv/bin/activate` (On Windows: `venv\Scripts\activate`)
+3. Install dependencies: `pip install -r requirements.txt`
+4. Install and start Ollama: Download from ollama.ai, pull the `mxbai-embed-large` model, ensure Ollama is running.
 
 ## Data Preparation
-
 ### Conversation JSON File Naming Convention
-
-Ensure your conversation export files follow these naming conventions:
-
-1. **GPT Conversations**:
-   - Filename must start with `conversations`
-   - Supported formats: 
-     - `conversations.json`
-     - `conversations_export.json`
-     - `conversations_YYYY-MM-DD.json`
-
-2. **Claude Conversations**:
-   - Filename must start with `claude_conversations`
-   - Supported formats:
-     - `claude_conversations.json`
-     - `claude_conversations_export.json`
-     - `claude_conversations_YYYY-MM-DD.json`
+- GPT: `conversations.json`, `conversations_export.json`, `conversations_YYYY-MM-DD.json`
+- Claude: `claude_conversations.json`, `claude_conversations_export.json`, `claude_conversations_YYYY-MM-DD.json`
 
 ### Data Processing Workflow
-
-1. Place your conversation JSON files in the project root
-2. Run the conversation loader (automatically handles file splitting and vector store loading):
-```bash
-python load_conversations.py
-```
+1. Place JSON files in the project root.
+2. Run: `python load_conversations.py`
 
 ## Running the Application
-
-```bash
-streamlit run Home.py
-```
-
-The application will be available at http://localhost:8501
+`streamlit run Home.py` (http://localhost:8501)
 
 ### Using the Application
-
-1. **Search Conversations**
-   - Use the semantic search bar to find relevant conversations
-   - Adjust relevance threshold to control match precision
-   - View conversation details and similar conversations
-
-   ![Semantic Search Interface](semanticsearch1.png)
-   *Main semantic search interface with search bar and relevance controls*
-
-   ![Search Results View](semanticsearch2.png)
-   *Detailed view of semantic search results with conversation context*
-
-   ![Similar Conversations](semanticsearch3.png)
-   *Similar conversation recommendations and relationship visualization*
-
-2. **Topic Map**
-   - Navigate to the Topic Map page to visualize conversation relationships
-   - Click nodes to explore related conversations
-   - Use the physics-based layout to organize topics
+1. Search Conversations: Semantic search bar, relevance threshold, conversation details, similar conversations.
+2. Topic Map: Visualize relationships, explore conversations, physics-based layout.
 
 ## Project Structure
-
-```
-MindSpring/
-├── memlog/                    # Project progress tracking
-│   ├── conversation_vector_store.py  # Vector store implementation
-│   ├── shared_vector_store.py        # Shared vector store instance
-│   └── data_flow.md                  # Architecture documentation
-├── pages/                     # Streamlit additional pages
-│   └── 1_Topic_Map.py         # Topic visualization page
-├── conversations_chunks/      # Processed conversation chunks
-├── claude_conversations_chunks/  # Claude conversation chunks
-├── Home.py                    # Main application interface
-├── load_conversations.py      # Conversation data loader
-└── requirements.txt          # Project dependencies
-```
+(See memlog/memlog.md for project structure)
 
 ## Key Components
-
-- `conversation_vector_store.py`: Manages vector embeddings and search using Qdrant
-- `load_conversations.py`: Processes conversations and loads them into the vector store
-- `Home.py`: Main Streamlit interface with semantic search
-- `1_Topic_Map.py`: Interactive topic relationship visualization
+- `conversation_vector_store.py`: Manages vector embeddings and search.
+- `load_conversations.py`: Processes and loads conversations.
+- `Home.py`: Main Streamlit interface.
+- `1_Topic_Map.py`: Topic visualization.
 
 ## Performance Optimizations
-
-- Batch processing for vector store operations
-- Efficient embedding generation with Ollama
-- Memory-conscious chunk processing
-- Qdrant vector similarity search
-- Progress tracking and error handling
+- Batch processing, efficient embedding generation, memory-conscious chunk processing, Qdrant search, progress tracking, error handling.
 
 ## Recent Changes
-
-- **Vector Store Integration**: Successfully integrated Ollama embeddings with Qdrant for semantic search
-- **Chunk Processing**: Improved chunk processing with automatic file splitting and progress tracking
-- **UI Enhancements**: Added relevance controls and similar conversation recommendations
-- **Performance**: Optimized vector store operations and memory usage
-- **Error Handling**: Added comprehensive error handling and progress monitoring
+(See memlog/memlog.md for recent changes)
 
 ## System Architecture
-
-MindSpring utilizes a multi-stage data pipeline:
-
-1. **Data Ingestion:** Raw conversation JSON files are automatically split into manageable chunks
-2. **Vector Processing:** 
-   - Text extraction from conversations
-   - Embedding generation using Ollama
-   - Vector storage in Qdrant
-3. **Search & Visualization:** 
-   - Semantic search using vector similarity
-   - Interactive topic visualization
-   - Similar conversation discovery
-
-A detailed architecture diagram can be found in `memlog/data_flow.md`.
+- Data Ingestion: Raw JSON files are split into chunks.
+- Vector Processing: Text extraction, embedding generation, vector storage.
+- Search & Visualization: Semantic search, topic visualization, similar conversation discovery.
+- Detailed diagram: `memlog/data_flow.md`
 
 ## Project Progress
-
-See `memlog/memlog.md` for detailed progress tracking and development updates.
+(See memlog/memlog.md)
 
 ## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit changes: `git commit -m 'Add some AmazingFeature'`
+4. Push to the branch: `git push origin feature/AmazingFeature`
+5. Open a Pull Request.
 
 ## License
-
 MIT License
 
 ## Contact
-
-Name: Kurt Overmier
-email: kurt@kurtovermier.com
-site: smartbrandstrategies.com
+Kurt Overmier (kurt@kurtovermier.com, smartbrandstrategies.com)
 
 ## Acknowledgments
+- Ollama, Qdrant, Streamlit, Python Data Science Ecosystem
 
-- [Ollama](https://ollama.ai/) for local embedding generation
-- [Qdrant](https://qdrant.tech/) for vector storage
-- [Streamlit](https://streamlit.io/) for the UI framework
-- Python Data Science Ecosystem
+
+### Notes & Decisions
+- Design decisions and rationale for key features.
+- Architectural choices and their justifications.
+- Key constraints and limitations.
+
+### Resources
+- Links to relevant documentation, libraries, and tools used in the project.
