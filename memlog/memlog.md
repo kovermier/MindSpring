@@ -31,6 +31,7 @@
 - [x] Improve UI/UX
 - [x] Implement automated file splitting and processing
 - [x] Resolve lock file issue
+- [x] Integrate data_flow.svg into data_flow.md
 
 **Blockers**:
 - None

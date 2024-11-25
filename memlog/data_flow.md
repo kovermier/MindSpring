@@ -34,78 +34,9 @@ This document outlines the data flow architecture of the MindSpring system, show
 
 ## Data Flow Sequence
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300">
-    <!-- Definitions for filters and gradients -->
-    <defs>
-        <!-- Soft shadow -->
-        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
-            <feOffset dx="2" dy="2" result="offsetblur"/>
-            <feComponentTransfer>
-                <feFuncA type="linear" slope="0.2"/>
-            </feComponentTransfer>
-            <feMerge>
-                <feMergeNode/>
-                <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-        </filter>
-
-        <!-- Gradient for arrows -->
-        <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#e0e0e0;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#b0b0b0;stop-opacity:1" />
-        </linearGradient>
-
-        <!-- Arrow marker -->
-        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-            <path d="M0,0 L10,3.5 L0,7" fill="#b0b0b0"/>
-        </marker>
-    </defs>
-
-    <!-- Nodes -->
-    <g transform="translate(50,50)">
-        <!-- Raw Conversation Files -->
-        <rect x="0" y="0" width="140" height="60" rx="10" fill="#f9f" filter="url(#shadow)"/>
-        <text x="70" y="25" text-anchor="middle" fill="#333" font-family="Arial">Raw Conversation</text>
-        <text x="70" y="45" text-anchor="middle" fill="#333" font-family="Arial">Files (JSON)</text>
-
-        <!-- load_conversations.py -->
-        <rect x="190" y="0" width="140" height="60" rx="10" fill="#fff" filter="url(#shadow)"/>
-        <text x="260" y="35" text-anchor="middle" fill="#333" font-family="Arial">load_conversations.py</text>
-
-        <!-- ConversationVectorStore -->
-        <rect x="380" y="0" width="140" height="60" rx="10" fill="#fff" filter="url(#shadow)"/>
-        <text x="450" y="25" text-anchor="middle" fill="#333" font-family="Arial">Conversation</text>
-        <text x="450" y="45" text-anchor="middle" fill="#333" font-family="Arial">VectorStore</text>
-
-        <!-- Ollama API -->
-        <rect x="570" y="0" width="140" height="60" rx="10" fill="#fff" filter="url(#shadow)"/>
-        <text x="640" y="25" text-anchor="middle" fill="#333" font-family="Arial">Ollama API</text>
-        <text x="640" y="45" text-anchor="middle" fill="#333" font-family="Arial">(mxbai-embed-large)</text>
-
-        <!-- Qdrant Vector DB -->
-        <rect x="380" y="100" width="140" height="60" rx="10" fill="#bbf" filter="url(#shadow)"/>
-        <text x="450" y="135" text-anchor="middle" fill="#333" font-family="Arial">Qdrant Vector DB</text>
-
-        <!-- Home.py -->
-        <rect x="190" y="170" width="140" height="60" rx="10" fill="#bfb" filter="url(#shadow)"/>
-        <text x="260" y="195" text-anchor="middle" fill="#333" font-family="Arial">Home.py</text>
-        <text x="260" y="215" text-anchor="middle" fill="#333" font-family="Arial">(Search Interface)</text>
-
-        <!-- Topic Map -->
-        <rect x="570" y="170" width="140" height="60" rx="10" fill="#ccf" filter="url(#shadow)"/>
-        <text x="640" y="195" text-anchor="middle" fill="#333" font-family="Arial">Topic_Map.py</text>
-        <text x="640" y="215" text-anchor="middle" fill="#333" font-family="Arial">(Visualization)</text>
-
-        <!-- Connecting arrows -->
-        <path d="M140,30 L190,30" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)"/>
-        <path d="M330,30 L380,30" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)"/>
-        <path d="M520,30 L570,30" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)"/>
-        <path d="M640,60 L640,80 L450,80 L450,100" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)"/>
-        <path d="M380,130 L260,130 L260,170" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)"/>
-        <path d="M520,130 L640,130 L640,170" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)"/>
-    </g>
-</svg>
+```svg
+<img src="data_flow.svg" alt="Data Flow Diagram">
+```
 
 ## Processing Pipeline
 
