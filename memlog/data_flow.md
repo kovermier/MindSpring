@@ -36,7 +36,7 @@ This document outlines the data flow architecture of the MindSpring system, show
 
 ```mermaid
 graph LR
-    A[Raw Conversation Files (JSON)] --> B{load_conversations.py};
+    A[Raw Conversation Files (JSON)] --> B[load_conversations.py];
     B --> C{ConversationVectorStore};
     C --> D[Ollama API (mxbai-embed-large)];
     D --> E[Qdrant Vector DB];
