@@ -34,9 +34,7 @@ This document outlines the data flow architecture of the MindSpring system, show
 
 ## Data Flow Sequence
 
-```svg
-<img src="data_flow.svg" alt="Data Flow Diagram">
-```
+[Data Flow Diagram](memlog/data_flow.svg)
 
 ## Processing Pipeline
 
