@@ -35,18 +35,18 @@ This document outlines the data flow architecture of the MindSpring system, show
 ## Data Flow Sequence
 
 ```mermaid
-graph TD
-    A[Raw Conversation Files (JSON)] --> B{load_conversations.py}
-    B --> C{ConversationVectorStore}
-    C --> D[Ollama API (mxbai-embed-large)]
-    D --> E[Qdrant Vector DB]
-    E --> F[Home.py (Search Interface)]
-    E --> G[pages/1_Topic_Map.py (Visualization)]
+graph LR
+    A[Raw Conversation Files (JSON)] --> B{load_conversations.py};
+    B --> C{ConversationVectorStore};
+    C --> D[Ollama API (mxbai-embed-large)];
+    D --> E[Qdrant Vector DB];
+    E --> F[Home.py (Search Interface)];
+    E --> G[pages/1_Topic_Map.py (Visualization)];
 
-    style A fill:#f9f,stroke:#333
-    style E fill:#bbf,stroke:#333
-    style F fill:#bfb,stroke:#333
-    style G fill:#ccf,stroke:#333
+    style A fill:#f9f,stroke:#333;
+    style E fill:#bbf,stroke:#333;
+    style F fill:#bfb,stroke:#333;
+    style G fill:#ccf,stroke:#333;
 ```
 
 ## Processing Pipeline
