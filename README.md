@@ -112,7 +112,7 @@ MindSpring is a systematic tracking and analysis system for GPT and ClaudeAI con
 MIT License
 
 ## Contact
-Kurt Overmier (kurt@kurtovermier.com, smartbrandstrategies.com)
+Kurt Overmier (kurt@kurtovermier.com, www.smartbrandstrategies.com)
 
 ## Acknowledgments
 - Ollama, Qdrant, Streamlit, Python Data Science Ecosystem
