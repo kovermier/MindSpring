@@ -22,7 +22,7 @@
 
         <!-- Arrow marker -->
         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-            <path d="M0,0 L10,3.5 L0,7" fill="#b0b0b0"/>
+            <path d="M0,0 L10,3.5 L0,7" fill="#eeeeee"/>
         </marker>
     </defs>
 
