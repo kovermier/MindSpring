@@ -1,4 +1,4 @@
-# Project Memlog - MindSpring
+# ReadMe - MindSpring
 
 ## Overview
 **Project**: MindSpring
