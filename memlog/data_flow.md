@@ -1,129 +1,97 @@
 # Conversation Mind Data Flow Architecture
 
 ## Overview
-This document outlines the data flow architecture of the Conversation Mind system, showing how data moves from raw conversation files through various processing stages to searchable vector embeddings.
+
+This document outlines the data flow architecture of the MindSpring system, showing how data moves from raw conversation files through processing to searchable vector embeddings.
 
 ## Core Components
 
 ### 1. Data Storage Layer
-- **Qdrant Vector Store** (./qdrant_db)
-  - Stores conversation embeddings
-  - Enables semantic search
-  - Manages vector indices
+
+- **Qdrant Vector Store** (`./qdrant_db`)
+    - Stores conversation embeddings.
+    - Enables semantic search.
+    - Manages vector indices.
 
 ### 2. Processing Components
-- **BatchProcessor**
-  - Handles chunk-based processing
-  - Implements retry logic
-  - Tracks processing checkpoints
 
-- **ConversationVectorStore**
-  - Generates embeddings (using Ollama's mxba-embed-large model)
-  - Manages Qdrant interactions
-  - Provides search capabilities
-  - Implements singleton pattern
+- **`load_conversations.py`**
+    - Handles file watching, splitting, and loading.
+    - Manages batch processing of conversations.
+    - Implements retry logic and progress tracking.
+
+- **`ConversationVectorStore` (`memlog/conversation_vector_store.py`)**
+    - Generates embeddings using Ollama's `mxbai-embed-large` model.
+    - Manages Qdrant interactions (upserting and searching).
+    - Provides search capabilities.
+    - Implements singleton pattern via `shared_vector_store.py`.
 
 ### 3. Shared Resources
-- **Vector Store Singleton**
-  - Ensures single instance across pages
-  - Handles lock file management
+
+- **Vector Store Singleton** (`memlog/shared_vector_store.py`)
+    - Ensures a single instance of `ConversationVectorStore` across pages.
+    - Handles lock file management for thread safety.
 
 ## Data Flow Sequence
 
 ```mermaid
 graph TD
-    A[Raw Conversation Files] --> B[Chunk Files]
-    B --> C{BatchProcessor}
-    C --> E{ConversationVectorStore}
-    E --> F[Ollama API]
-    F --> G[Qdrant Vector DB]
-    G --> H[Search Interface]
-    
-    I[Classification Engine] --> E
-    J[Topic Extraction] --> E
-    
-    K[Shared Vector Store] --> E
-    
+    A[Raw Conversation Files (JSON)] --> B{load_conversations.py}
+    B --> C{ConversationVectorStore}
+    C --> D[Ollama API (mxbai-embed-large)]
+    D --> E[Qdrant Vector DB]
+    E --> F[Home.py (Search Interface)]
+    E --> G[pages/1_Topic_Map.py (Visualization)]
+
     style A fill:#f9f,stroke:#333
-    style G fill:#bbf,stroke:#333
-    style H fill:#bfb,stroke:#333
+    style E fill:#bbf,stroke:#333
+    style F fill:#bfb,stroke:#333
+    style G fill:#ccf,stroke:#333
 ```
 
 ## Processing Pipeline
 
-1. **Initial Data Loading**
-   ```
-   Raw Files → Chunk Files → BatchProcessor → ConversationVectorStore
-   ```
-   - Chunks loaded with adaptive batch sizing
-   - Progress tracking and checkpointing
-   - Error handling with retries
+1. **Data Loading and Processing:**
 
-2. **Vector Processing**
-   ```
-   ConversationVectorStore → Ollama API → Embeddings → Qdrant
-   ```
-   - Text extraction and cleaning
-   - Embedding generation (using Ollama)
-   - Vector storage and indexing
+   - `load_conversations.py` watches for new conversation files.
+   - Files are split into chunks if they exceed a size limit.
+   - Chunks are loaded and processed in batches by `load_conversations.py`.
+   - `ConversationVectorStore` is used to generate embeddings and store them in Qdrant.
 
-3. **Search Flow**
-   ```
-   Query → Ollama API → Embedding → Vector Search → Results
-   ```
-   - Query embedding generation (using Ollama)
-   - Similarity search in Qdrant
-   - Optional time-based filtering
+2. **Vector Processing:**
+
+   - `ConversationVectorStore` extracts text from conversation chunks.
+   - Embeddings are generated using the Ollama API with the `mxbai-embed-large` model.
+   - Vectors and metadata are upserted into the Qdrant database.
+
+3. **Search Flow:**
+
+   - User enters a query in `Home.py`.
+   - `ConversationVectorStore` generates an embedding for the query using Ollama.
+   - Qdrant performs a similarity search based on the query embedding.
+   - Results are returned to `Home.py` and displayed.
+
+4. **Visualization:**
+    - `pages/1_Topic_Map.py` uses the shared `ConversationVectorStore` to access embeddings and metadata for visualization.
+
 
 ## Performance Considerations
 
-1. **Memory Management**
-   - Adaptive batch sizing based on memory usage
-   - Streaming JSON parsing for large files
-
-2. **Error Handling**
-   - Exponential backoff for retries
-   - Checkpoint-based recovery
-   - Detailed error logging
-
-3. **Resource Optimization**
-   - Singleton pattern for shared resources
-   - Caching of vector store instance
-   - Efficient file locking mechanism
+- **Memory Management:** Adaptive batch sizing based on available memory.
+- **Error Handling:** Retries with exponential backoff, checkpointing for recovery.
+- **Resource Optimization:** Singleton pattern for shared resources, caching.
 
 ## Monitoring and Logging
 
-1. **System Health**
-   - Memory usage tracking
-   - Disk space monitoring
-   - Processing rate metrics
-
-2. **Progress Tracking**
-   - Chunk processing status
-   - Success/failure rates
-   - Performance metrics
-
-3. **Error Logging**
-   - Detailed error messages
-   - Retry attempts tracking
-   - System health updates
+- **Progress Tracking:** Chunk processing status, success/failure rates.
+- **Error Logging:** Detailed error messages and retry attempts.
 
 ## Security Measures
 
-1. **File Access**
-   - Lock file management
-   - Safe file operations
-   - Resource cleanup
+- File Access: Lock file management for thread safety.
 
 
 ## Integration Points
 
-1. **Web Interface**
-   - Streamlit-based UI
-   - Progress indicators
-   - Status updates
-
-2. **Vector Store Integration**
-   - Shared instance management
-   - Cross-page accessibility
-   - Resource optimization
+- **Web Interface:** Streamlit-based UI for search and visualization.
+- **Vector Store Integration:** Shared `ConversationVectorStore` instance.
