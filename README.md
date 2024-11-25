@@ -20,7 +20,7 @@
 - 📝 Needs Review
 
 ## Daily Logs
-(See memlog/memlog.md for detailed daily logs)
+(See [memlog/memlog.md](memlog/memlog.md) for detailed daily logs)
 
 
 ## Tasks
@@ -33,7 +33,7 @@
 | 003 | Enhance knowledge graph visualization | 🟢 | Kover | - |
 
 ### Completed
-(See memlog/memlog.md for completed tasks)
+(See [memlog/memlog.md](memlog/memlog.md) for completed tasks)
 
 
 ## AI Assistant Sessions
@@ -78,7 +78,7 @@ MindSpring is a systematic tracking and analysis system for GPT and ClaudeAI con
 2. Topic Map: Visualize relationships, explore conversations, physics-based layout.
 
 ## Project Structure
-(See memlog/memlog.md for project structure)
+(See [memlog/memlog.md](memlog/memlog.md) for project structure)
 
 ## Key Components
 - `conversation_vector_store.py`: Manages vector embeddings and search.
@@ -90,7 +90,7 @@ MindSpring is a systematic tracking and analysis system for GPT and ClaudeAI con
 - Batch processing, efficient embedding generation, memory-conscious chunk processing, Qdrant search, progress tracking, error handling.
 
 ## Recent Changes
-(See memlog/memlog.md for recent changes)
+(See [memlog/memlog.md](memlog/memlog.md) for recent changes)
 
 ## System Architecture
 - Data Ingestion: Raw JSON files are split into chunks.
@@ -99,7 +99,7 @@ MindSpring is a systematic tracking and analysis system for GPT and ClaudeAI con
 - Detailed diagram: `memlog/data_flow.md`
 
 ## Project Progress
-(See memlog/memlog.md)
+(See [memlog/memlog.md](memlog/memlog.md))
 
 ## Contributing
 1. Fork the repository.
@@ -125,3 +125,6 @@ Kurt Overmier (kurt@kurtovermier.com, www.smartbrandstrategies.com)
 
 ### Resources
 - Links to relevant documentation, libraries, and tools used in the project.
+
+## Future Improvements and Plans
+See [memlog/project_improvements.md](memlog/project_improvements.md) for details.
